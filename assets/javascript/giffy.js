@@ -26,12 +26,15 @@ $(document).ready(function() {
       var animalGIFs = res.data;
 
       animalGIFs.forEach(element => {
-        animalImg = $('<img>').attr({
-          src: element.images.fixed_width.url,
+        $('#giffy-ness').append('<figure id="' + element.id + '"><figcaption>');
+        $('#' + element.id + ' > figcaption').text("Rating: " + element.rating.toUpperCase());
+
+        var animalImg = $('<img>').attr({
+          src: element.images.fixed_height.url,
           alt: element.title 
         });
 
-        $('#giffy-ness').append(animalImg);
+        $('#' + element.id).append(animalImg);
       });
     });
 
