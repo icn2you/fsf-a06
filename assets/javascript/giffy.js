@@ -27,23 +27,22 @@ $(document).ready(function() {
     return me;
   }());
 
-  $('button').on('click', function(event) {  
+  $(document).on('click', 'button', function(event) {
     var animal = $('#animal').val().trim();
-
-    if (!animal)
-      animal = event.target.id;
-    else
-      animals.push(animal);
-        
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=X6f0Yx1wXCdYoPDqRVxg1BSA17QzInZZ&q=" + animal + "&limit=10&rating";
-
-    // DEBUG:
-    // console.log(queryURL);
-
+    
     // Clear input and previous results.
     $('#animal').val('');
     $('#giffy-ness').empty();
-    refreshAnimals();
+
+    if (!animal) {
+      animal = event.target.id;
+    }
+    else {
+      animals.push(animal);
+      refreshAnimals();
+    }
+
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=X6f0Yx1wXCdYoPDqRVxg1BSA17QzInZZ&q=" + animal + "&limit=10&rating";
 
     $.ajax({
       url: queryURL,
@@ -72,16 +71,7 @@ $(document).ready(function() {
     });
   });
 
-  // DEBUG:
-  // $('body').on('click', function(event) {
-  //   console.log(event.target.tagName + ' clicked!');
-  // });
-
-  // $(document).on('click', '.gif', function() {
   $(document).on('click', 'img[src$=".gif"]', function() {
-    // DEBUG:
-    // console.log('GIF clicked!');
-
     var state = $(this).attr('data-state');
 
     if (state === 'still') {
