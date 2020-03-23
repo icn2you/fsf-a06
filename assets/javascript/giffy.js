@@ -31,7 +31,10 @@ $(document).ready(function() {
 
         var animalImg = $('<img>').attr({
           src: element.images.fixed_height.url,
-          alt: element.title 
+          alt: element.title,
+          'data-state': 'animate',
+          'data-animated': element.images.fixed_height.url,
+          'data-still': element.images.fixed_height_still.url 
         });
 
         $('#' + element.id).append(animalImg);
@@ -39,5 +42,31 @@ $(document).ready(function() {
     });
 
     $('#animal').val('');
+  });
+
+  // DEBUG:
+  // $('body').on('click', function(event) {
+  //   console.log(event.target.tagName + ' clicked!');
+  // });
+
+  // $(document).on('click', '.gif', function() {
+  $(document).on('click', 'img[src$=".gif"]', function() {
+    // DEBUG:
+    console.log('GIF clicked!');
+
+    var state = $(this).attr('data-state');
+
+    if (state === 'still') {
+      $(this).attr({
+        src: $(this).attr('data-animated'),
+        'data-state': 'animate'
+      });
+    }
+    else {
+      $(this).attr({
+        src: $(this).attr('data-still'),
+        'data-state': 'still'
+      });
+    }
   });
 });
