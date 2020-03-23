@@ -8,17 +8,42 @@ This JS script is all about API calls and getting a litte "giffy." =P
 ******************************************************************************/
 
 $(document).ready(function() {
+  var animals = ['aardvark', 'badger', 'chipmunk', 'dophin', 'elephant', 'fox', 'giraffe', 'hyena', 'ignauna', 'jaguar', 'kangaroo', 'lemming', 'moose', 'narwhal', 'octopus', 'platypus', 'quail', 'raccoon', 'snake', 'tarantula', 'uakaris', 'vole', 'wolf', 'xerus', 'yak', 'zebra'];
 
-  $('#get-giffy').on('click', function() {  
-    var animal = $('#animal').val().trim(),
-        queryURL = "https://api.giphy.com/v1/gifs/search?api_key=X6f0Yx1wXCdYoPDqRVxg1BSA17QzInZZ&q=" + animal + "&limit=10&rating";
+  var refreshAnimals = (function me() {
+    $('#animal-btns').empty();
+
+    animals.sort();
+
+    animals.forEach(element => {
+      var animalBtn = $('<button>').attr({
+        type: 'button',
+        id: element,
+      }).addClass('btn btn-secondary animal-btn').text(element);
+
+      $('#animal-btns').append(animalBtn);
+    });
+
+    return me;
+  }());
+
+  $('button').on('click', function(event) {  
+    var animal = $('#animal').val().trim();
+
+    if (!animal)
+      animal = event.target.id;
+    else
+      animals.push(animal);
+        
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=X6f0Yx1wXCdYoPDqRVxg1BSA17QzInZZ&q=" + animal + "&limit=10&rating";
 
     // DEBUG:
     // console.log(queryURL);
-    
+
     // Clear input and previous results.
     $('#animal').val('');
     $('#giffy-ness').empty();
+    refreshAnimals();
 
     $.ajax({
       url: queryURL,
@@ -26,7 +51,8 @@ $(document).ready(function() {
     })
     .then (function(res) {
       // DEBUG:
-      console.log(res);
+      // console.log(res);
+      
       var animalGIFs = res.data;
 
       animalGIFs.forEach(element => {
@@ -54,7 +80,7 @@ $(document).ready(function() {
   // $(document).on('click', '.gif', function() {
   $(document).on('click', 'img[src$=".gif"]', function() {
     // DEBUG:
-    console.log('GIF clicked!');
+    // console.log('GIF clicked!');
 
     var state = $(this).attr('data-state');
 
