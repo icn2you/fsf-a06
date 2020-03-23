@@ -59,9 +59,9 @@ $(document).ready(function() {
         $('#' + element.id + ' > figcaption').text("Rating: " + element.rating.toUpperCase());
 
         var animalImg = $('<img>').attr({
-          src: element.images.fixed_height.url,
+          src: element.images.fixed_height_still.url,
           alt: element.title,
-          'data-state': 'animate',
+          'data-state': 'still',
           'data-animated': element.images.fixed_height.url,
           'data-still': element.images.fixed_height_still.url 
         });
