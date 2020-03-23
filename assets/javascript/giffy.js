@@ -15,6 +15,10 @@ $(document).ready(function() {
 
     // DEBUG:
     // console.log(queryURL);
+    
+    // Clear input and previous results.
+    $('#animal').val('');
+    $('#giffy-ness').empty();
 
     $.ajax({
       url: queryURL,
@@ -40,8 +44,6 @@ $(document).ready(function() {
         $('#' + element.id).append(animalImg);
       });
     });
-
-    $('#animal').val('');
   });
 
   // DEBUG:
