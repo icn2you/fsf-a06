@@ -1,0 +1,64 @@
+/******************************************************************************
+FSWD:  Christopher B. Zenner
+Date:  03/21/2020
+File:  style.css
+Ver.:  0.1.0 20200322
+
+This CSS specifies the layout and style for the Gettin' a Little Giffy page.
+*******************************************************************************/
+
+/* Debug */
+.debug-border-red { border: 1px solid red !important; }
+.debug-border-org { border: 1px solid orange !important; }
+.debug-border-ylw { border: 1px solid yellow !important; }
+.debug-border-grn { border: 1px solid green !important; }
+.debug-border-blu { border: 1px solid blue !important; }
+.debug-border-pur { border: 1px solid purple !important; }
+
+/* Main Secondary color (1) */
+.color-secondary-1-0 { color: #5A78B7 }
+.color-secondary-1-1 { color: #B5C6EA }
+.color-secondary-1-2 { color: #839CD2 }
+.color-secondary-1-3 { color: #3D5DA0 }
+.color-secondary-1-4 { color: #214592 }
+
+/******************************************************************************
+ Global Elements
+*******************************************************************************/
+* {
+  /* Make widths static */
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #EEE;
+  color: #000;
+  font-family: 'Baloo 2', sans-serif;
+}
+
+/******************************************************************************
+ Main Elements (Primary Content)
+*******************************************************************************/
+button {
+  background-color: #214592 !important; /* Bootstrap override */
+  border-color: #214592 !important; /* Bootstrap override */
+}
+
+button:active, button:hover {
+  background-color: #839CD2 !important; /* Bootstrap override */
+  border-color: #839CD2 !important; /* Bootstrap override */
+}
+
+button:not(#get-giffy) {
+  margin: 0.25rem;
+}
+
+figure {
+  display: inline-block;
+  margin: 1rem 1rem 1rem 0;
+}
+
+figcaption {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
